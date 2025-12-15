@@ -129,7 +129,18 @@ function getSelectElement() {
 function initSelect(arr) {
     const select = getSelectElement();
     select.innerHTML = '';
-    createoption(select, "Válassz Manót!"); // ez a függvény még nincs implementálva, görgess lejjebb
+    createoption(select, "Válassz Manót!");
+    for(const a of arr){
+
+        createoption(select, a.who1, a.who1);
+        
+        if(a.who2 != undefined){
+
+            createoption(select, a.who2, a.who2);
+        }
+        
+    }
+     // ez a függvény még nincs implementálva, görgess lejjebb
 }
 
 /**
@@ -141,6 +152,12 @@ function initSelect(arr) {
  * @returns {void}
  */
 function createoption(selectElement, label, value = "") {
+
+
+    const option = document.createElement("option")
+    option.value = value
+    option.innerText = label
+    selectElement.appendChild(option)
 
 }
 
@@ -165,11 +182,25 @@ function createoption(selectElement, label, value = "") {
  */
 function createNewElement(obj, form, array) {
 
+    getSelectElement(obj.who1)
+    if(obj.who2 != undefined){
+
+        getSelectElement(obj.who2)
+
+    }
+
+    const mano2 = form.querySelector("#masodikmano")
+    changeCheckboxValue(mano2)
+
     // ez egy ismerős rész, ehhez nem kell nyúlni
     array.push(obj);
     renderTbody(array);
     form.reset();
     // ismerős rész vége
+
+    
+
+
 
 }
 
