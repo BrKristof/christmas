@@ -5,7 +5,34 @@
 /**
  *  Lekérjük a tableselectort, és regisztrálunk egy change eseménykezelőt!
  */
+const tableselector= document.querySelector("#tableselector")
+tableselector.addEventListener('change', changeBasedOnRadio)
 
+function changeBasedOnRadio(e){
+
+    /**
+     * @type {HTMLInputElement}
+     */
+    const radio = e.target
+
+    const hmtlsection = document.getElementById("htmlsection")
+    const jssection = document.getElementById("jssection")
+
+    if(radio.checked == true){
+
+        const value = radio.value
+
+        if(value == "htmlsection"){
+            hmtlsection.classList.remove('hide')
+            jssection.classList.add('hide')
+        }
+        else{
+            jssection.classList.remove('hide')
+            hmtlsection.classList.add('hide')
+        }
+
+    }
+}
 
 
 /**
@@ -20,6 +47,17 @@
  */
 function initCheckbox(checkboxElem){
 
+    changeCheckboxValue(checkboxElem)
+    checkboxElem.addEventListener('change',function(e){
+        
+        /**
+     * @type {HTMLInputElement}
+     */
+    const checkbox = e.target
+
+    changeCheckboxValue(checkbox)
+
+    })
 }
 
 /**
@@ -35,6 +73,29 @@ function initCheckbox(checkboxElem){
  * @returns {void}
  */
 function changeCheckboxValue(checkbox){
+
+    const div = checkbox.parentElement
+    const form = div.parentElement
+
+    /**
+     * @type {HTMLInputElement}
+     */
+    const mano2 = form.querySelector("#mano2")
+    /**
+     * @type {HTMLInputElement}
+     */
+    const muszak2 = form.querySelector("#muszak2")
+
+    if(checkbox.checked == true){
+
+        mano2.disabled = false
+        muszak2.disabled = false
+    }
+    else{
+        mano2.disabled = true
+        muszak2.disabled = true
+    }
+
 
 }
 
