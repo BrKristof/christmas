@@ -194,7 +194,7 @@ function createNewElement(obj, form, array) {
 
     // ez egy ismerős rész, ehhez nem kell nyúlni
     array.push(obj);
-    renderTbody(array);
+    createTableBody(array);
     form.reset();
     // ismerős rész vége
 
